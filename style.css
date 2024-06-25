@@ -692,6 +692,7 @@ div#preloader {
 .calculator-inner .form-input {
     border: 1px solid #f1f1f1;
     background: #fff;
+    color: darkslategray;
     height: 52px;
     border-radius: 0px;
     padding: 5px 15px;
