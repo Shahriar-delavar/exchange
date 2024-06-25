@@ -22,7 +22,6 @@
 		console.log("clicked");
 		const send_currency = $("#send-currency").val();
 		const receive_currency = $("#receive-currency").val();
-
 		const pair = `${send_currency}-${receive_currency}`;
 		console.log(pair);
 		

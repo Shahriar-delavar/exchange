@@ -721,7 +721,7 @@ div#preloader {
     background-color: #4F4537;
     border-radius: 0 2px 2px 0;
     height: 52px;
-    padding: 0 20px 0 20px;
+    padding: 0 20px 0 25px;
     line-height: 54px;
     font-size: 17px;
     font-weight: 700;
@@ -734,7 +734,7 @@ div#preloader {
     display: block;
     height: 8px;
     margin-top: -5px;
-    right: 15px;
+    right: 5px;
     width: 8px;
 }
 .money-send .calculator-inner .nice-select .list{
