@@ -31,8 +31,8 @@
 			.then(r => r.json())
 			.then(j => j[pair])
 			.then(rate => {
-				$("#buy-rate").text(rate.BUY);
-				$("#sell-rate").text(rate.SELL);
+				$("#buy-rate").text(rate?.BUY || "No rate");
+				$("#sell-rate").text(rate?.SELL || "No rate") ;
 				console.log(j);
 			})
 			.catch(e => console.error(e))
