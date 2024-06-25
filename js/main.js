@@ -20,6 +20,12 @@
 		// fetch rates 
 
 		console.log("clicked");
+		const send_currency = $("#send-currency").val();
+		const receive_currency = $("#send-currency").val();
+
+		const pair = `${send_currency}-${receive_currency}`;
+		console.log(pair);
+		
 
 		fetch("https://portal.artaaustralia.com.au/api/sam/rates")
 			.then(r => r.json())

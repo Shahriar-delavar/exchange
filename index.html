@@ -177,9 +177,9 @@
                                                 <form>
                                                     <label class="persian">ارسال شما</label>
                                                     <input type="number" class="form-input" placeholder="">
-                                                    <select>
-                                                        <option value="position">USD</option>
-                                                        <option value="position">EUR</option>
+                                                    <select id="send-currency">
+                                                        <option value="USD">USD</option>
+                                                        <option value="AED">AED</option>
                                                     </select>
                                                 </form>
                                             </div>
@@ -187,19 +187,18 @@
                                                 <form action="index.html#">
                                                     <label class="persian"> دریافت در مقصد</label>
                                                     <input type="number" class="form-input" placeholder="">
-                                                    <select>
-                                                        <option value="position">USD</option>
-                                                        <option value="position">EUR</option>
-
+                                                    <select id="receive-currency">
+                                                        <option value="USD">USD</option>
+                                                        <option value="AED">AED</option>
                                                     </select>
                                                 </form>
                                             </div>
-                                            <!-- <div class="inner-form-text">
+                                            <div class="inner-form-text">
                                                 <div class="rate-text">
-                                                    <span><strong>82.50</strong> Exchange rate</span>
-                                                    <span><strong>$5.50</strong> Transition fees</span>
+                                                    <span><strong id="buy-rate"></strong> خرید </span>
+                                                    <span><strong id="sell-rate"></strong> فروش</span>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                             <button 
                                             id="calculate-btn" class="cale-btn vazirFont">محاسبه</button>
                                             <div class="terms-text">
