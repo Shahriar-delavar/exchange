@@ -721,7 +721,7 @@ div#preloader {
     background-color: #4F4537;
     border-radius: 0 2px 2px 0;
     height: 52px;
-    padding: 0 35px 0 24px;
+    padding: 0 0 35px 24px;
     line-height: 54px;
     font-size: 17px;
     font-weight: 700;
