@@ -21,7 +21,7 @@
 
 		console.log("clicked");
 
-		fetch("https://portal.artaaustralia.com.au/api/v1/public/rates/USDT")
+		fetch("https://portal.artaaustralia.com.au/api/sam/rates")
 			.then(r => r.json())
 			.then(j => console.log(j))
 			.catch(e => console.error(e))
