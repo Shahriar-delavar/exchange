@@ -14,11 +14,8 @@
 	// calculate 
 
 	$("#calculate-btn").on("click", () => {
-
-
 		// check form 
 		// fetch rates 
-
 		console.log("clicked");
 		const send_currency = $("#send-currency").val();
 		const receive_currency = $("#receive-currency").val();
@@ -29,25 +26,30 @@
 		fetch("https://portal.artaaustralia.com.au/api/sam/rates")
 			.then(r => r.json())
 			.then(j => j[pair])
-			.then(rate => {
-				$("#buy-rate").text(rate?.BUY || "No rate");
-				$("#sell-rate").text(rate?.SELL || "No rate");
-				console.log(rate);
+			.then(p => {
+				const receive_amount = parseFloat(getInputValueByIDasInteger("send-amount-input") * parseFloat(p.rate));
+				$("#receive-amount-display").val(receive_amount.toFixed(0).toLocaleString());
 			})
 			.catch(e => console.error(e))
 	});
+
+	function getInputValueByIDasInteger(id) {
+		const pre_num = $(`#${id}`).val();
+		const no_comma = pre_num.replaceAll(",", "");
+		return parseInt(no_comma); // Remove any existing commas
+
+	}
+
 
 
 	//  keep input formatted with commas
 	$("#send-amount-input")
 		.on("keyup", () => {
-			const pre_num = $("#send-amount-input").val();
-			const no_comma = pre_num.replaceAll(",", "");
-			let number = parseInt(no_comma); // Remove any existing commas
+			const number = getInputValueByIDasInteger("send-amount-input");
 			if (!isNaN(number)) {
 				const formattedNumber = number.toLocaleString();
-				console.log(formattedNumber);
 				$("#send-amount-input").val(formattedNumber) // Format and remove decimals
+				$("#receive-amount-display").val("");
 			}
 		});
 
@@ -57,7 +59,7 @@
 	$("#send-currency")
 		.on("change",
 			() => {
-				console.log($("#send-currency").val(), $("#receive-currency").val());
+				$("#receive-amount-display").val("");
 				if ($("#send-currency").val() == "AUD") {
 					$("#receive-currency").val("TOMAN").trigger("change");
 					$("#receive-currency").niceSelect("update");
