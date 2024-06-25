@@ -27,8 +27,10 @@
 			.then(r => r.json())
 			.then(j => j[pair])
 			.then(p => {
+				if(p.rate && !isNaN(p?.rate)){
 				const receive_amount = parseFloat(getInputValueByIDasInteger("send-amount-input") * parseFloat(p.rate));
-				$("#receive-amount-display").val(receive_amount.toFixed(0).toLocaleString());
+				$("#receive-amount-display").val(parseInt(receive_amount.toFixed(0)).toLocaleString());
+				}
 			})
 			.catch(e => console.error(e))
 	});
