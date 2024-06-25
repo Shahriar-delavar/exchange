@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build" :"parcel build index.html --public-url ./"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    build :"--public-url ./
+"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
+}

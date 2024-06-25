@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    bui
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
+}
