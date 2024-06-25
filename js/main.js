@@ -33,7 +33,7 @@
 			.then(rate => {
 				$("#buy-rate").text(rate?.BUY || "No rate");
 				$("#sell-rate").text(rate?.SELL || "No rate") ;
-				console.log(j);
+				console.log(rate);
 			})
 			.catch(e => console.error(e))
 	})
