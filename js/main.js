@@ -21,7 +21,7 @@
 
 		console.log("clicked");
 		const send_currency = $("#send-currency").val();
-		const receive_currency = $("#send-currency").val();
+		const receive_currency = $("#receive-currency").val();
 
 		const pair = `${send_currency}-${receive_currency}`;
 		console.log(pair);
@@ -29,7 +29,12 @@
 
 		fetch("https://portal.artaaustralia.com.au/api/sam/rates")
 			.then(r => r.json())
-			.then(j => console.log(j))
+			.then(j => j[pair])
+			.then(rate => {
+				$("#buy-rate").text(rate.BUY);
+				$("#sell-rate").text(rate.SELL);
+				console.log(j);
+			})
 			.catch(e => console.error(e))
 	})
 
