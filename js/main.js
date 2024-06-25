@@ -24,18 +24,56 @@
 		const receive_currency = $("#receive-currency").val();
 		const pair = `${send_currency}-${receive_currency}`;
 		console.log(pair);
-		
+
 
 		fetch("https://portal.artaaustralia.com.au/api/sam/rates")
 			.then(r => r.json())
 			.then(j => j[pair])
 			.then(rate => {
 				$("#buy-rate").text(rate?.BUY || "No rate");
-				$("#sell-rate").text(rate?.SELL || "No rate") ;
+				$("#sell-rate").text(rate?.SELL || "No rate");
 				console.log(rate);
 			})
 			.catch(e => console.error(e))
-	})
+	});
+
+
+	//  keep input formatted with commas
+	$("#send-amount-input")
+		.on("keyup", () => {
+			const pre_num = $("#send-amount-input").val();
+			const no_comma = pre_num.replaceAll(",", "");
+			let number = parseInt(no_comma); // Remove any existing commas
+			if (!isNaN(number)) {
+				const formattedNumber = number.toLocaleString();
+				console.log(formattedNumber);
+				$("#send-amount-input").val(formattedNumber) // Format and remove decimals
+			}
+		});
+
+
+	//  handel input currency select change 
+
+	$("#send-currency")
+		.on("change",
+			() => {
+				console.log($("#send-currency").val(), $("#receive-currency").val());
+				if ($("#send-currency").val() == "AUD") {
+					$("#receive-currency").val("TOMAN").trigger("change");
+					$("#receive-currency").niceSelect("update");
+				}
+				else {
+					$("#receive-currency").val("AUD").trigger("change");
+					$("#receive-currency").niceSelect("update");
+
+				}
+
+
+			});
+
+
+
+
 
 	/*---------------------
 	 TOP Menu Stick
