@@ -16,23 +16,41 @@
 	$("#calculate-btn").on("click", () => {
 		// check form 
 		// fetch rates 
-		console.log("clicked");
+		const send_amount = getInputValueByIDasInteger("send-amount-input");
 		const send_currency = $("#send-currency").val();
 		const receive_currency = $("#receive-currency").val();
 		const pair = `${send_currency}-${receive_currency}`;
-		console.log(pair);
+	
+		if (send_amount && send_amount > 0) {
+			fetch("https://portal.artaaustralia.com.au/api/sam/rates")
+				.then(r => r.json())
+				.then(j => {
+					console.log(j);
+					console.log(send_amount.toLocaleString())
+					const rate_detial = j.find(
+						(obj) => (obj.symbol == pair && obj._from <= send_amount));					
+					if(rate_detial) return rate_detial
+					else return false 
+				})
+				.then(d => {
+					console.log(d);
+					if (d._rate && !isNaN(d?._rate)) {
+						let receive_amount = 0;
+						if (d.is_based_on_dest || d.symbol.startsWith('IRT')) {
+							receive_amount = Math.ceil((send_amount - d._commission) * (1 / d._rate));
+						} else {
+							receive_amount = Math.ceil(((send_amount - d._commission) * d._rate));
+						}
+						$("#receive-amount-display").val(parseInt(receive_amount.toFixed(0)).toLocaleString());
+					} else {
+						$("#receive-amount-display").val("خطا در محاسبه .");
+
+					}
+				})
+				.catch(e => console.error(e))
+		}
 
 
-		fetch("https://portal.artaaustralia.com.au/api/sam/rates")
-			.then(r => r.json())
-			.then(j => j[pair])
-			.then(p => {
-				if(p.rate && !isNaN(p?.rate)){
-				const receive_amount = parseFloat(getInputValueByIDasInteger("send-amount-input") * parseFloat(p.rate));
-				$("#receive-amount-display").val(parseInt(receive_amount.toFixed(0)).toLocaleString());
-				}
-			})
-			.catch(e => console.error(e))
 	});
 
 	function getInputValueByIDasInteger(id) {
@@ -63,7 +81,7 @@
 			() => {
 				$("#receive-amount-display").val("");
 				if ($("#send-currency").val() == "AUD") {
-					$("#receive-currency").val("TOMAN").trigger("change");
+					$("#receive-currency").val("IRT").trigger("change");
 					$("#receive-currency").niceSelect("update");
 				}
 				else {
