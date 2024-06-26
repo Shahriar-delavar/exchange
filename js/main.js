@@ -63,7 +63,7 @@
 				</span>
 				${convertEnglishToPersian(ratesMax._rate.toLocaleString())}`
 			);
-			$("#display_buy_rate").text(
+			$("#display_buy_rate").html(
 				`<span class="dolar">تومان
 				</span>
 			${convertEnglishToPersian(ratesMin._rate.toLocaleString())}`);
