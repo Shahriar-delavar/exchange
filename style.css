@@ -2099,10 +2099,11 @@ span.users {
     font-weight: 700;
 }
 span.dolar {
-    font-size: 24px;
-    margin-right: 5px;
+    font-size: 14px;
+    /* margin-right: 5px; */
     position: relative;
-    top: -17px;
+    top: -5px;
+    left: -17px;
     color: #6a7d91;
 }
 .prices {
