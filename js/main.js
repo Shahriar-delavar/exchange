@@ -59,8 +59,7 @@
 				return maxObj;
 			}, { symbol: "IRT-AUD", _rate: -Infinity }); // Initial object with lowest possible rate
 
-			$("#display_sell_rate").html(
-				`<span class="dolar">T
+			$("#display_sell_rate").html(`<span class="dolar">T
 				</span>
 				${convertEnglishToPersian(ratesMax._rate.toLocaleString())}`
 			);
