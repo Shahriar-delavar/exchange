@@ -174,32 +174,32 @@
                                     <div class="calculator-inner">
                                         <div class="single-cal">
                                             <div class="inner-form">
-                                              
-                                                    <label class="persian">ارسال شما</label>
-                                                    <input id="send-amount-input"  class="form-input" placeholder="">
-                                                    <select id="send-currency">                                                    
-                                                        <option value="AUD">AUD</option>
-                                                        <option value="IRT" class="vazirFont" selected>تومان</option>
-                                                    </select>
-                                                
+
+                                                <label class="persian">ارسال شما</label>
+                                                <input id="send-amount-input" class="form-input" placeholder="">
+                                                <select id="send-currency">
+                                                    <option value="AUD">AUD</option>
+                                                    <option value="IRT" class="vazirFont" selected>تومان</option>
+                                                </select>
+
                                             </div>
                                             <div class="inner-form">
-                                                    <label class="persian"> دریافت در مقصد</label>
-                                                    <input id="receive-amount-display" class="form-input" placeholder="محاسبه نشده " disabled>
-                                                    <select id="receive-currency">
-                                                        <option value="AUD" selected>AUD</option>
-                                                        <option value="IRT" class="vazirFont">تومان</option>
-                                                    </select>
-                                                
+                                                <label class="persian"> دریافت در مقصد</label>
+                                                <input id="receive-amount-display" class="form-input"
+                                                    placeholder="محاسبه نشده " disabled>
+                                                <select id="receive-currency">
+                                                    <option value="AUD" selected>AUD</option>
+                                                    <option value="IRT" class="vazirFont">تومان</option>
+                                                </select>
+
                                             </div>
                                             <div class="inner-form-text">
                                                 <div class="rate-text persian">
                                                     <!-- <span><strong id="buy-rate"></strong> خرید </span>
                                                     <span><strong id="sell-rate"></strong> فروش</span> -->
-                                                </div> 
+                                                </div>
                                             </div>
-                                            <button 
-                                            id="calculate-btn" class="cale-btn vazirFont">محاسبه</button>
+                                            <button id="calculate-btn" class="cale-btn vazirFont">محاسبه</button>
                                             <div class="terms-text">
                                                 <p class="persian">شرایط و ضوابط
                                                     <a href="index.html#">این بخش</a>
@@ -237,8 +237,11 @@
                                                     <div class="top-price-inner">
                                                         <h4 class="vazirFont">خرید</h4>
                                                         <div class="rates">
-                                                            <span class="prices vazirFont"><span class="dolar">T</span
-                                                                    class="vazirFont">۳۹،۴۰۰</span>
+                                                            <span class="prices vazirFont"  id="display_buy_rate">
+                                                                <span class="dolar">T
+                                                                </span>
+                                                                ۳۹،۴۰۰
+                                                            </span>
                                                         </div>
                                                     </div>
 
@@ -250,9 +253,12 @@
                                                     <div class="top-price-inner">
                                                         <h4 class="vazirFont">فروش</h4>
                                                         <div class="rates">
-                                                            <span class="prices vazirFont">
+                                                            <span class="prices vazirFont"
+                                                                id="display_sell_rate">
                                                                 <span class="dolar">
-                                                                    T</span class="vazirFont">۴۰،۵۰۰</span>
+                                                                    T</span>
+                                                                ۴۰،۵۰۰
+                                                            </span>
                                                         </div>
                                                     </div>
 
@@ -297,7 +303,6 @@
                     <!-- End single column-->
                     <!-- Start single column-->
                     <div class="col-md-4 col-sm-4 col-xs-12">
-
                         <div class="well-services">
                             <div class="well-img">
                                 <a class="big-icon" href="index.html#"><i class="flaticon-028-money"></i></a>
@@ -307,12 +312,9 @@
                                     <h4 class="vazirFont">سفارش خود را ثبت کنید </h4>
                                     <p class="vazirFont">
                                         با ثبت مبلغ و مشخصات گیرنده و فرستنده سفارش خود را ثبت کنید </p>
-
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                     <!-- End single column-->
                     <!-- Start single column-->
@@ -323,11 +325,11 @@
                             </div>
                             <div class="main-wel">
                                 <div class="wel-content">
-                                    <h4 class="vazirFont"> 
+                                    <h4 class="vazirFont">
                                         صبر کنید تا تراکش انجام شود
                                     </h4>
                                     <p class="vazirFont">
-                                        بعد از ثبت تایید سفارش تراکنش شما به سرعت انجام خواهد شد 
+                                        بعد از ثبت تایید سفارش تراکنش شما به سرعت انجام خواهد شد
                                         .</p>
                                 </div>
                             </div>
@@ -341,7 +343,9 @@
     <!-- End How to area -->
 
     <!-- End about area -->
-    <!-- Start services area -->
+    <!-- Rates table  area -->
+
+    <!-- 
     <div class="services-area bg-color area-padding-2">
         <div class="container">
             <div class="row">
@@ -390,7 +394,7 @@
         </div>
     </div>
 
-
+ -->
 
     <div class="blog-page-area bg-color fix area-padding-2">
         <div class="container">
@@ -626,7 +630,7 @@
             </div>
         </div>
 
-        
+
         <!-- Start footer bottom area -->
         <div class="footer-area-bottom">
             <div class="container">

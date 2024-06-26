@@ -11,6 +11,67 @@
 	});
 
 
+	// persian numbers 
+
+	function convertEnglishToPersian(numberString) {
+		const englishToPersianDigits = {
+			"0": "۰",
+			"1": "۱",
+			"2": "۲",
+			"3": "۳",
+			"4": "۴",
+			"5": "۵",
+			"6": "۶",
+			"7": "۷",
+			"8": "۸",
+			"9": "۹",
+		};
+		const chars = numberString.split("");
+		const persianChars = chars.map((char) => englishToPersianDigits[char] || char); // Handle non-numeric characters
+		return persianChars.join("");
+	}
+
+
+
+	// update display rates 
+
+
+	fetch("https://portal.artaaustralia.com.au/api/sam/rates")
+		.then(r => r.json())
+		.then(j => {
+
+			console.log(j);
+
+			const ratesMin = j.reduce(
+				(minObj, currentObj) => {
+					if (currentObj.symbol === "AUD-IRT") {
+						// Check for lower rate
+						return currentObj._rate < minObj._rate ? currentObj : minObj;
+					}
+					return minObj;
+				}, { group: "AUD-IRT", _rate: Infinity }); // Initial object with highest possible rate
+
+			const ratesMax = j.reduce((maxObj, currentObj) => {
+				if (currentObj.symbol === "IRT-AUD") {
+					// Check for higher rate
+					return currentObj._rate > maxObj._rate ? currentObj : maxObj;
+				}
+				return maxObj;
+			}, { symbol: "IRT-AUD", _rate: -Infinity }); // Initial object with lowest possible rate
+
+
+			// bala tarin 
+			$("#display_sell_rate").text(convertEnglishToPersian(ratesMax._rate.toLocaleString()));
+			$("#display_buy_rate").text(convertEnglishToPersian(ratesMin._rate.toLocaleString()));
+
+			// payeen tarin 
+
+
+		})
+		.catch(e => console.error(e))
+
+
+
 	// calculate 
 
 	$("#calculate-btn").on("click", () => {
@@ -20,7 +81,7 @@
 		const send_currency = $("#send-currency").val();
 		const receive_currency = $("#receive-currency").val();
 		const pair = `${send_currency}-${receive_currency}`;
-	
+
 		if (send_amount && send_amount > 0) {
 			fetch("https://portal.artaaustralia.com.au/api/sam/rates")
 				.then(r => r.json())
@@ -28,9 +89,9 @@
 					console.log(j);
 					console.log(send_amount.toLocaleString())
 					const rate_detial = j.find(
-						(obj) => (obj.symbol == pair && obj._from <= send_amount));					
-					if(rate_detial) return rate_detial
-					else return false 
+						(obj) => (obj.symbol == pair && obj._from <= send_amount));
+					if (rate_detial) return rate_detial
+					else return false
 				})
 				.then(d => {
 					console.log(d);
@@ -44,7 +105,6 @@
 						$("#receive-amount-display").val(parseInt(receive_amount.toFixed(0)).toLocaleString());
 					} else {
 						$("#receive-amount-display").val("خطا در محاسبه .");
-
 					}
 				})
 				.catch(e => console.error(e))
@@ -89,8 +149,6 @@
 					$("#receive-currency").niceSelect("update");
 
 				}
-
-
 			});
 
 
@@ -113,12 +171,17 @@
 		}
 	});
 
+
+
 	/*----------------------------
 	 jQuery MeanMenu
 	------------------------------ */
 
 	var mean_menu = $('nav#dropdown');
 	mean_menu.meanmenu();
+
+
+
 
 	// Nice Select JS
 	$('select').niceSelect();
@@ -167,52 +230,9 @@
 		horizontalScrolling: false
 	});
 
-	/*---------------------
-	 Testimonial carousel
-	---------------------*/
 
-	var review = $('.testimonial-carousel');
-	review.owlCarousel({
-		loop: true,
-		nav: true,
-		margin: 20,
-		dots: false,
-		navText: ["<i class='ti-angle-left'></i>", "<i class='ti-angle-right'></i>"],
-		autoplay: false,
-		responsive: {
-			0: {
-				items: 1
-			},
-			768: {
-				items: 2
-			},
-			1000: {
-				items: 4
-			}
-		}
-	});
-	/*--------------------------
-		 Payments carousel
-	---------------------------- */
-	var payment_carousel = $('.payment-carousel');
-	payment_carousel.owlCarousel({
-		loop: true,
-		nav: false,
-		autoplay: false,
-		margin: 30,
-		dots: false,
-		responsive: {
-			0: {
-				items: 2
-			},
-			700: {
-				items: 4
-			},
-			1000: {
-				items: 6
-			}
-		}
-	});
+
+
 
 
 })(jQuery); 
