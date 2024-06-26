@@ -59,14 +59,12 @@
 				return maxObj;
 			}, { symbol: "IRT-AUD", _rate: -Infinity }); // Initial object with lowest possible rate
 
-
-			// bala tarin 
-			$("#display_sell_rate").text(convertEnglishToPersian(ratesMax._rate.toLocaleString()));
+			$("#display_sell_rate").html(
+				`<span class="dolar">T
+				</span>
+				${convertEnglishToPersian(ratesMax._rate.toLocaleString())}`
+			);
 			$("#display_buy_rate").text(convertEnglishToPersian(ratesMin._rate.toLocaleString()));
-
-			// payeen tarin 
-
-
 		})
 		.catch(e => console.error(e))
 
