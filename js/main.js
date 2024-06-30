@@ -60,8 +60,6 @@
 				return maxObj;
 			}, { symbol: "AUD-IRT", _rate: -Infinity }); // Initial object with lowest possible rate
 
-
-
 			$("#display_sell_rate").html(`<span class="dolar">تومان
 				</span>${convertEnglishToPersian(ratesMin._rate.toLocaleString())}`
 			);
@@ -96,6 +94,7 @@
 				})
 				.then(d => {
 					console.log(d);
+					$("#buy-rate").text(d._rate);				
 					if (d._rate && !isNaN(d?._rate)) {
 						let receive_amount = 0;
 						if (d.is_based_on_dest || d.symbol.startsWith('IRT')) {
