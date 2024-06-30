@@ -44,20 +44,21 @@
 
 			const ratesMin = j.reduce(
 				(minObj, currentObj) => {
-					if (currentObj.symbol === "AUD-IRT") {
+					if (currentObj.symbol === "IRT-AUD") {
 						// Check for lower rate
 						return currentObj._rate < minObj._rate ? currentObj : minObj;
 					}
 					return minObj;
-				}, { group: "AUD-IRT", _rate: Infinity }); // Initial object with highest possible rate
+				}, { group: "IRT-AUD", _rate: Infinity }); // Initial object with highest possible rate
+
 
 			const ratesMax = j.reduce((maxObj, currentObj) => {
-				if (currentObj.symbol === "IRT-AUD") {
+				if (currentObj.symbol === "AUD-IRT") {
 					// Check for higher rate
 					return currentObj._rate > maxObj._rate ? currentObj : maxObj;
 				}
 				return maxObj;
-			}, { symbol: "IRT-AUD", _rate: -Infinity }); // Initial object with lowest possible rate
+			}, { symbol: "AUD-IRT", _rate: -Infinity }); // Initial object with lowest possible rate
 
 			$("#display_sell_rate").html(`<span class="dolar">تومان
 				</span>
