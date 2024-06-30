@@ -94,7 +94,7 @@
 				})
 				.then(d => {
 					console.log(d);
-					$("#rate").text(`parseInt(d._rate).toLocaleString() نرخ`);				
+					$("#rate").text(`${parseInt(d._rate).toLocaleString()} نرخ`);				
 					if (d._rate && !isNaN(d?._rate)) {
 						let receive_amount = 0;
 						if (d.is_based_on_dest || d.symbol.startsWith('IRT')) {
