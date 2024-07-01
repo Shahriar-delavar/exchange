@@ -76,7 +76,7 @@
 	$("#calculate-btn").on("click", () => {
 		// check form 
 		// fetch rates 
-		
+
 		const send_amount = getInputValueByIDasInteger("send-amount-input");
 		const send_currency = $("#send-currency").val();
 		const receive_currency = $("#receive-currency").val();
@@ -110,6 +110,7 @@
 					} else {
 						$("#receive-amount-display")
 							.val("نرخ در محدوده مورد نظر پیدا نشد");
+						$("#rate").html("");
 					}
 				})
 				.catch(e => console.error(e))
