@@ -76,6 +76,7 @@
 	$("#calculate-btn").on("click", () => {
 		// check form 
 		// fetch rates 
+		
 		const send_amount = getInputValueByIDasInteger("send-amount-input");
 		const send_currency = $("#send-currency").val();
 		const receive_currency = $("#receive-currency").val();
@@ -85,26 +86,30 @@
 			fetch("https://portal.artaaustralia.com.au/api/sam/rates")
 				.then(r => r.json())
 				.then(j => {
-					console.log(j);
-					console.log(send_amount.toLocaleString())
 					const rate_detial = j.find(
-						(obj) => (obj.symbol == pair && obj._from <= send_amount));
+						(obj) => (obj.symbol == pair && obj._from <= send_amount && obj._to >= send_amount));
 					if (rate_detial) return rate_detial
 					else return false
 				})
 				.then(d => {
-					console.log(d);
-					$("#rate").text(`${parseInt(d._rate).toLocaleString()} نرخ`);				
 					if (d._rate && !isNaN(d?._rate)) {
+						console.log(d);
 						let receive_amount = 0;
 						if (d.is_based_on_dest || d.symbol.startsWith('IRT')) {
 							receive_amount = Math.ceil((send_amount - d._commission) * (1 / d._rate));
 						} else {
 							receive_amount = Math.ceil(((send_amount - d._commission) * d._rate));
 						}
-						$("#receive-amount-display").val(parseInt(receive_amount.toFixed(0)).toLocaleString());
+						if (isNaN(receive_amount)) {
+							$("#rate").text(` خطا در محاسبه .`);
+						} else {
+							$("#receive-amount-display")
+								.val(parseInt(receive_amount.toFixed(0)).toLocaleString());
+							$("#rate").html(` ${convertEnglishToPersian(parseInt(d._rate).toLocaleString())} <span class="float-right persian">نرخ</span>`);
+						}
 					} else {
-						$("#receive-amount-display").val("خطا در محاسبه .");
+						$("#receive-amount-display")
+							.val("نرخ در محدوده مورد نظر پیدا نشد");
 					}
 				})
 				.catch(e => console.error(e))
