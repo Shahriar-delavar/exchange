@@ -105,7 +105,7 @@
 						} else {
 							$("#receive-amount-display")
 								.val(parseInt(receive_amount.toFixed(0)).toLocaleString());
-							$("#rate").html(` ${convertEnglishToPersian(parseInt(d._rate).toLocaleString())} <span class="float-right persian">نرخ</span>`);
+							$("#rate").html(`${convertEnglishToPersian(parseInt(d._rate).toLocaleString())} <span class="float-right persian">نرخ</span>`);
 						}
 					} else {
 						$("#receive-amount-display")
