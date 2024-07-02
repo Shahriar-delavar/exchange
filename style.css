@@ -752,6 +752,7 @@ div#preloader {
 }
 .money-send .calculator-inner .nice-select .current {
     color: #ECBD62;
+    font-family: "Vazirmatn";
 }
 button.cale-btn {
     width: 100%;
@@ -1633,7 +1634,7 @@ button.cale-btn:hover{
     position: relative;
 }
 .page-area {
-    background: url(img/background/bread-bg.jpg);
+    background: url(img/background/blog.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

@@ -1,6 +1,26 @@
 (function ($) {
 	"use strict";
 
+	const base_url = "https://portal.artaaustralia.com.au";
+
+
+	function parseHTML(htmlString) {
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(htmlString, 'text/html');
+		return doc.body.innerHTML; // Access parsed HTML content
+	}
+
+	function parseEscapedHtml(text) {
+		// Create a temporary element to parse the HTML
+		const tempEl = document.createElement('div');
+
+		// Set the innerHTML of the temporary element with the escaped text
+		tempEl.innerHTML = text;
+
+		// Return the parsed HTML content (innerHTML of the temporary element)
+		return tempEl.textContent;
+	}
+
 	/*--------------------------
 	preloader
 	---------------------------- */
@@ -32,11 +52,13 @@
 	}
 
 
+	loadBlogPosts();
+
 
 	// update display rates 
 
 
-	fetch("https://portal.artaaustralia.com.au/api/sam/rates")
+	fetch(`${base_url}/api/sam/rates`)
 		.then(r => r.json())
 		.then(j => {
 
@@ -68,6 +90,8 @@
 				</span>${convertEnglishToPersian(ratesMax._rate.toLocaleString())}`);
 		})
 		.catch(e => console.error(e))
+
+
 
 
 
@@ -127,6 +151,64 @@
 	}
 
 
+	function loadBlogPosts() {
+		console.log("loading blog posts");
+		fetch(`${base_url}/api/sam/posts/`)
+			.then(r => r.json())
+			.then(posts => {
+				$("#blog_posts_container").html("");
+				console.log(posts[0]);
+				posts.forEach(post => $("#blog_posts_container").append(generateBlogPostDisplay(post)))
+			})
+	}
+
+	function getRandomImage() {
+		return `img/blog/b${Math.floor(Math.random() * 6) + 1}.jpg`;
+	}
+
+	function generateBlogPostDisplay(p) {
+		let post = {
+			id: p.id,
+			post_lang: p.post_lang,
+			content: parseEscapedHtml(p.content)
+		};
+		if (!p.featured_image || p.featured_image == null) {
+			post.featured_image = getRandomImage();
+		} else {
+			post.featured_image = `${base_url}/sam/gallery/${p.featured_image}`;
+		}
+		return ` <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="single-blog">
+                            <div class="blog-image">
+                                <a class="image-scale" href="#">
+                                    <img crossorigin="anonymous" 
+									src="${post.featured_image}"
+									alt="">
+                                </a>
+                                <div class="blog-content">
+                                    <div class="blog-meta">
+                                        <span class="admin-type">
+                                            <i class="fa fa-user"></i>
+                                            Admin
+                                        </span>
+                                        <span class="date-type">
+                                            <i class="fa fa-calendar"></i>
+                                            ${post.published_at}
+                                        </span>                                     
+                                    </div>
+                                    <a href="">
+                                        <h4 class="persian">${post.title || ""}</h4>
+                                    </a>
+									<div ${post?.post_lang == "FA" ? 'class="persian"' : ""}>
+									${post.content}
+									</div>                                  
+                                     <a class="blog-btn anti-bttn"
+									  href="blog-fa.html?post_id=${post.id}" > خواندن مطلب </a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div> `
+	}
 
 	//  keep input formatted with commas
 	$("#send-amount-input")
@@ -235,10 +317,5 @@
 		positionProperty: 'position',
 		horizontalScrolling: false
 	});
-
-
-
-
-
 
 })(jQuery); 
