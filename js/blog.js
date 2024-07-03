@@ -1,8 +1,10 @@
 console.log("Blog JS");
 
+blog_js_config = {
+    base_url: "https://portal.artaaustralia.com.au",
+    Jdate_settings : { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+};
 $(document).ready(() => {
-    const base_url = "https://portal.artaaustralia.com.au";
-
 
     // Your jQuery code that interacts with the DOM goes here
     console.log("Document is ready!");
@@ -12,12 +14,11 @@ $(document).ready(() => {
         const post_id = parseInt(urlParams.get('post_id'));
         if (!isNaN(post_id)) {
             $("#blog_post_container").html("");
-            fetch(`${base_url}/api/public/sam/post/${post_id}`)
+            fetch(`${blog_js_config.base_url}/api/public/sam/post/${post_id}`)
                 .then(r => r.json())
                 .then(post => {
                     $("#blog_post_container").html(generatePost(post));
-                }
-                )
+                })
                 .catch(e => console.error(e))
         }
 
@@ -30,10 +31,20 @@ $(document).ready(() => {
 
 
 function generatePost(p) {
+
+    let post = {
+        published_at: new Date(p.published_at)
+            .toLocaleDateString("fa-IR", blog_js_config.Jdate_settings),
+        featured_image: `${blog_js_config.base_url}/sam/gallery/${p.featured_image}` || `img/blog/b${Math.floor(Math.random() * 6) + 1}.jpg`,
+
+
+    };
+
+
     return `  <article class="blog-post-wrapper">
                             <div class="blog-banner">
                                 <a href="blog-details.html#" class="blog-images">
-                                    <img src="img/blog/b1.jpg" alt="">
+                                    <img crossorigin="anonymous" src="${post.featured_image}" alt="">
                                 </a>
                                 <div class="blog-content">
                                     <div class="blog-meta">
@@ -41,14 +52,10 @@ function generatePost(p) {
                                             <i class="fa fa-user"></i>
                                             Admin
                                         </span>
-                                        <span class="date-type">
+                                        <span class="date-type persian">
                                            <i class="fa fa-calendar"></i>
-                                            28 june, 2019
-                                        </span>
-                                        <span class="comments-type">
-                                            <i class="fa fa-comment-o"></i>
-                                            32
-                                        </span>
+                                           ${post.published_at}                                      
+                                        </span>                                       
                                     </div>
                                     <h4>multipol is an firm and general group</h4>
                                     <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself,</p>
