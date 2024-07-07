@@ -3,6 +3,11 @@
 
 	const base_url = "https://portal.artaaustralia.com.au";
 
+	const main_js_config = {
+		base_url: "https://portal.artaaustralia.com.au",
+		Jdate_settings: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+	};
+
 
 	function parseHTML(htmlString) {
 		const parser = new DOMParser();
@@ -165,8 +170,6 @@
 		return `img/blog/b${Math.floor(Math.random() * 6) + 1}.jpg`;
 	}
 
-
-
 	function generateBlogPostDisplay(p) {
 		let post = {
 			id: p.id,
@@ -176,6 +179,8 @@
 			published_at: p.published_at,
 			content: parseEscapedHtml(p.content)
 		};
+
+
 		if (p.hasOwnProperty('published_at') && p.hasOwnProperty('updated_at') && p.updated_at instanceof Date) {
 			// Compare dates in milliseconds for accurate comparison
 			const publishedTime = new Date(p.published_at).getTime();
@@ -185,6 +190,7 @@
 			updatedTime > publishedTime ? post.published_at = p.updated_at : post.published_at = p.updated_at;
 		}
 
+		post.published_at = new Date(post.published_at).toLocaleDateString("fa-IR", main_js_config.Jdate_settings);
 
 		if (p.featured_image == 'false' || !p.featured_image || p.featured_image == null) {
 			post.featured_image = getRandomImage();
