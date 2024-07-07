@@ -203,7 +203,7 @@
 									${post.excerpt}
 									</div>                                  
                                      <a class="blog-btn anti-bttn"
-									  href="blog-fa.html?post_id=${post.id}" > خواندن مطلب </a> 
+									  href="blog-fa.html?post_id=${post.id}"> خواندن مطلب </a> 
                                 </div>
                             </div>
                         </div>
