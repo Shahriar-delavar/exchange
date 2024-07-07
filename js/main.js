@@ -181,7 +181,8 @@
 			excerpt: p.excerpt,
 			post_lang: p.post_lang,
 			published_at: p.published_at,
-			content: parseEscapedHtml(p.content)
+			content: parseEscapedHtml(p.content),
+			link : 'blog-fa.html?post_id=${post.id}'
 		};
 
 
@@ -198,10 +199,10 @@
 		} else {
 			post.featured_image = `${base_url}/sam/gallery/${p.featured_image}`;
 		}
-		return ` <div class="col-md-4 col-sm-6 col-xs-12">
+		return `<div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="single-blog">
                             <div class="blog-image">
-                                <a class="image-scale" href="#">
+                                <a class="image-scale" href="${post.link}">
                                     <img crossorigin="anonymous" 
 									class="img-fluid"
 									src="${post.featured_image}"
@@ -218,14 +219,13 @@
                                             ${post.published_at}
                                         </span>                                     
                                     </div>
-                                    <a href="">
+                                    <a href="${post.link}">
                                         <h4 class="persian">${post.title || ""}</h4>
                                     </a>
 									<div ${post?.post_lang == "FA" ? 'class="persian"' : ""}>
 									${post.excerpt}
 									</div>                                  
-                                     <a class="blog-btn anti-bttn"
-									  href="blog-fa.html?post_id=${post.id}"> خواندن مطلب </a> 
+                                     
                                 </div>
                             </div>
                         </div>
