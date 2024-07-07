@@ -175,25 +175,22 @@
 			published_at: p.published_at,
 			content: parseEscapedHtml(p.content)
 		};
-
-
 		if (p.hasOwnProperty('published_at') && p.hasOwnProperty('updated_at') && p.updated_at instanceof Date) {
 			// Compare dates in milliseconds for accurate comparison
 			const publishedTime = new Date(p.published_at).getTime();
 			const updatedTime = new Date(p.updated_at).getTime();
 
 			// If updated is greater, return it
-			return updatedTime > publishedTime ? post.published_at = p.updated_at : post.published_at = p.updated_at;
+			updatedTime > publishedTime ? post.published_at = p.updated_at : post.published_at = p.updated_at;
 		}
 
-	}
 
-	if (p.featured_image == 'false' || !p.featured_image || p.featured_image == null) {
-		post.featured_image = getRandomImage();
-	} else {
-		post.featured_image = `${base_url}/sam/gallery/${p.featured_image}`;
-	}
-	return ` <div class="col-md-4 col-sm-6 col-xs-12">
+		if (p.featured_image == 'false' || !p.featured_image || p.featured_image == null) {
+			post.featured_image = getRandomImage();
+		} else {
+			post.featured_image = `${base_url}/sam/gallery/${p.featured_image}`;
+		}
+		return ` <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="single-blog">
                             <div class="blog-image">
                                 <a class="image-scale" href="#">
@@ -223,115 +220,115 @@
                                 </div>
                             </div>
                         </div>
-                    </div> `
-}
+                    </div>`;
+	}
 
 	//  keep input formatted with commas
 	$("#send-amount-input")
-	.on("keyup", () => {
-		const number = getInputValueByIDasInteger("send-amount-input");
-		if (!isNaN(number)) {
-			const formattedNumber = number.toLocaleString();
-			$("#send-amount-input").val(formattedNumber) // Format and remove decimals
-			$("#receive-amount-display").val("");
-		}
-	});
-
-
-//  handel input currency select change 
-
-$("#send-currency")
-	.on("change",
-		() => {
-			$("#receive-amount-display").val("");
-			if ($("#send-currency").val() == "AUD") {
-				$("#receive-currency").val("IRT").trigger("change");
-				$("#receive-currency").niceSelect("update");
-			}
-			else {
-				$("#receive-currency").val("AUD").trigger("change");
-				$("#receive-currency").niceSelect("update");
-
+		.on("keyup", () => {
+			const number = getInputValueByIDasInteger("send-amount-input");
+			if (!isNaN(number)) {
+				const formattedNumber = number.toLocaleString();
+				$("#send-amount-input").val(formattedNumber) // Format and remove decimals
+				$("#receive-amount-display").val("");
 			}
 		});
 
 
+	//  handel input currency select change 
+
+	$("#send-currency")
+		.on("change",
+			() => {
+				$("#receive-amount-display").val("");
+				if ($("#send-currency").val() == "AUD") {
+					$("#receive-currency").val("IRT").trigger("change");
+					$("#receive-currency").niceSelect("update");
+				}
+				else {
+					$("#receive-currency").val("AUD").trigger("change");
+					$("#receive-currency").niceSelect("update");
+
+				}
+			});
 
 
 
-/*---------------------
- TOP Menu Stick
---------------------- */
 
-var windows = $(window);
-var sticky = $('#sticker');
 
-windows.on('scroll', function () {
-	var scroll = windows.scrollTop();
-	if (scroll < 300) {
-		sticky.removeClass('stick');
-	} else {
-		sticky.addClass('stick');
+	/*---------------------
+	 TOP Menu Stick
+	--------------------- */
+
+	var windows = $(window);
+	var sticky = $('#sticker');
+
+	windows.on('scroll', function () {
+		var scroll = windows.scrollTop();
+		if (scroll < 300) {
+			sticky.removeClass('stick');
+		} else {
+			sticky.addClass('stick');
+		}
+	});
+
+
+
+	/*----------------------------
+	 jQuery MeanMenu
+	------------------------------ */
+
+	var mean_menu = $('nav#dropdown');
+	mean_menu.meanmenu();
+
+
+
+
+	// Nice Select JS
+	$('select').niceSelect();
+
+	/*---------------------
+	 wow .js
+	--------------------- */
+	function wowAnimation() {
+		new WOW({
+			offset: 100,
+			mobile: true
+		}).init()
 	}
-});
+	wowAnimation()
+
+	/*--------------------------
+	 scrollUp
+	---------------------------- */
+
+	$.scrollUp({
+		scrollText: '<i class="ti-angle-up"></i>',
+		easingType: 'linear',
+		scrollSpeed: 900,
+		animation: 'fade'
+	});
 
 
+	/*--------------------------
+	 collapse
+	---------------------------- */
 
-/*----------------------------
- jQuery MeanMenu
------------------------------- */
-
-var mean_menu = $('nav#dropdown');
-mean_menu.meanmenu();
-
-
-
-
-// Nice Select JS
-$('select').niceSelect();
-
-/*---------------------
- wow .js
---------------------- */
-function wowAnimation() {
-	new WOW({
-		offset: 100,
-		mobile: true
-	}).init()
-}
-wowAnimation()
-
-/*--------------------------
- scrollUp
----------------------------- */
-
-$.scrollUp({
-	scrollText: '<i class="ti-angle-up"></i>',
-	easingType: 'linear',
-	scrollSpeed: 900,
-	animation: 'fade'
-});
+	var panel_test = $('.panel-heading a');
+	panel_test.on('click', function () {
+		panel_test.removeClass('active');
+		$(this).addClass('active');
+	});
 
 
-/*--------------------------
- collapse
----------------------------- */
+	/*--------------------------
+	 Parallax
+	---------------------------- */
+	var parallaxeffect = $(window);
+	parallaxeffect.stellar({
+		responsive: true,
+		positionProperty: 'position',
+		horizontalScrolling: false
+	});
 
-var panel_test = $('.panel-heading a');
-panel_test.on('click', function () {
-	panel_test.removeClass('active');
-	$(this).addClass('active');
-});
-
-
-/*--------------------------
- Parallax
----------------------------- */
-var parallaxeffect = $(window);
-parallaxeffect.stellar({
-	responsive: true,
-	positionProperty: 'position',
-	horizontalScrolling: false
-});
-
-}) (jQuery); 
+})(jQuery); 
