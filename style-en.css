@@ -750,7 +750,7 @@ div#preloader {
 .money-send .calculator-inner .nice-select .current {
     color: #ECBD62;
 }
-button.cale-btn {
+button.calc-btn {
     width: 100%;
     color: #ECBD62;
     border: 1px solid #4F4537;
@@ -761,7 +761,7 @@ button.cale-btn {
     font-weight: 600;
     transition: 0.4s;
 }
-button.cale-btn:hover{
+button.calc-btn:hover{
     background:transparent;
     color:#4F4537;
     transition: 0.4s;

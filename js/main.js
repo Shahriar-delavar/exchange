@@ -111,6 +111,8 @@
 		const receive_currency = $("#receive-currency").val();
 		const pair = `${send_currency}-${receive_currency}`;
 
+		$("#calc-spinner").html(`<i class="fa fa-spinner fa-spin"></i>`);
+
 		if (send_amount && send_amount > 0) {
 			fetch("https://portal.artaaustralia.com.au/api/sam/rates")
 				.then(r => r.json())
@@ -134,13 +136,15 @@
 						} else {
 							$("#receive-amount-display")
 								.val(parseInt(receive_amount.toFixed(0)).toLocaleString());
-							$("#rate").html(`${convertEnglishToPersian(parseInt(d._rate).toLocaleString())} <span class="float-right persian">نرخ</span>`);
+							$("#rate").html(`${convertEnglishToPersian(parseInt(d._rate).toLocaleString())} <span class="persian" style="float:right;">نرخ</span>`);
 						}
 					} else {
 						$("#receive-amount-display")
 							.val("نرخ در محدوده مورد نظر پیدا نشد");
 						$("#rate").html("");
 					}
+					$("#calc-spinner").html(``);
+
 				})
 				.catch(e => console.error(e))
 		}
