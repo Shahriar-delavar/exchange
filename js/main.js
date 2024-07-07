@@ -150,7 +150,6 @@
 
 	}
 
-
 	function loadBlogPosts() {
 		console.log("loading blog posts");
 		fetch(`${base_url}/api/sam/posts/`)
@@ -165,6 +164,8 @@
 	function getRandomImage() {
 		return `img/blog/b${Math.floor(Math.random() * 6) + 1}.jpg`;
 	}
+
+
 
 	function generateBlogPostDisplay(p) {
 		let post = {
