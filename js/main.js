@@ -182,11 +182,8 @@
 
 
 		if (p.hasOwnProperty('published_at') && p.hasOwnProperty('updated_at') && p.updated_at instanceof Date) {
-			// Compare dates in milliseconds for accurate comparison
 			const publishedTime = new Date(p.published_at).getTime();
 			const updatedTime = new Date(p.updated_at).getTime();
-
-			// If updated is greater, return it
 			updatedTime > publishedTime ? post.published_at = p.updated_at : post.published_at = p.updated_at;
 		}
 
@@ -202,6 +199,7 @@
                             <div class="blog-image">
                                 <a class="image-scale" href="#">
                                     <img crossorigin="anonymous" 
+									class="img-fluid"
 									src="${post.featured_image}"
 									alt="">
                                 </a>
@@ -211,7 +209,7 @@
                                             <i class="fa fa-user"></i>
                                             Admin
                                         </span>
-                                        <span class="date-type">
+                                        <span class="date-type persian">
                                             <i class="fa fa-calendar"></i>
                                             ${post.published_at}
                                         </span>                                     
