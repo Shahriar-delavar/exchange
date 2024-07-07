@@ -2,14 +2,13 @@ console.log("Blog JS");
 
 blog_js_config = {
     base_url: "https://portal.artaaustralia.com.au",
-    Jdate_settings : { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    Jdate_settings: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 };
-$(document).ready(() => {
 
+$(document).ready(() => {
     // Your jQuery code that interacts with the DOM goes here
     console.log("Document is ready!");
     const urlParams = new URLSearchParams(window.location.search);
-
     if (urlParams.has('post_id')) {
         const post_id = parseInt(urlParams.get('post_id'));
         if (!isNaN(post_id)) {
@@ -25,21 +24,15 @@ $(document).ready(() => {
     } else {
 
     }
-
-
 });
 
 
 function generatePost(p) {
-
     let post = {
         published_at: new Date(p.published_at)
             .toLocaleDateString("fa-IR", blog_js_config.Jdate_settings),
         featured_image: `${blog_js_config.base_url}/sam/gallery/${p.featured_image}` || `img/blog/b${Math.floor(Math.random() * 6) + 1}.jpg`,
-
-
     };
-
 
     return `  <article class="blog-post-wrapper">
                             <div class="blog-banner">

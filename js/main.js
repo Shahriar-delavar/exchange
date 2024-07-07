@@ -172,7 +172,7 @@
 			post_lang: p.post_lang,
 			content: parseEscapedHtml(p.content)
 		};
-		if (!p.featured_image || p.featured_image == null) {
+		if (p.featured_image == 'false' || !p.featured_image || p.featured_image == null) {
 			post.featured_image = getRandomImage();
 		} else {
 			post.featured_image = `${base_url}/sam/gallery/${p.featured_image}`;
@@ -200,7 +200,7 @@
                                         <h4 class="persian">${post.title || ""}</h4>
                                     </a>
 									<div ${post?.post_lang == "FA" ? 'class="persian"' : ""}>
-									${post.content}
+									${post.excerpt}
 									</div>                                  
                                      <a class="blog-btn anti-bttn"
 									  href="blog-fa.html?post_id=${post.id}" > خواندن مطلب </a> 
