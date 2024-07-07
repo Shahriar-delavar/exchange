@@ -182,7 +182,7 @@
 			post_lang: p.post_lang,
 			published_at: p.published_at,
 			content: parseEscapedHtml(p.content),
-			link : 'blog-fa.html?post_id=${post.id}'
+			link : `blog-fa.html?post_id=${p.id}`
 		};
 
 

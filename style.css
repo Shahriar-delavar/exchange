@@ -48,6 +48,7 @@
   --sam-bg-dark-transparent: rgba(0, 0, 0, 0.3);
   --sam-bg-transparent-blue: rgba(27, 38, 84, 0.5);
   --sam-bg-transparent-blue-opac-4: rgba(27, 38, 84, 0.4);
+  --sam-bg-blue-opac-4 : rgba(7, 11, 41, 0.4);
 }
 
 /*----------------------------------------*/
@@ -405,7 +406,7 @@ div#preloader {
   z-index: 999;
 }
 .header-area {
-  background: rgba(7, 11, 41, 0.9);
+  background: rgba(7, 11, 41, 0.5);
   z-index: 99;
 }
 .logo {
@@ -555,7 +556,7 @@ div#preloader {
   width: 100%;
   z-index: 999999;
   box-shadow: 0px 0px 3px #151b2c, -2px -2px 3px #151b2c;
-  background: #1b2654;
+  /* background: #1b2654; */
 }
 .header-area.stick .logo a {
   display: inline-block;
@@ -705,7 +706,7 @@ div#preloader {
   width: 60%;
   height: 115%;
   content: "";
-  background: #4f4537;
+  /* background: #4f4537; */
   opacity: 0.5;
   z-index: -1;
   border-radius: 3px;
@@ -833,7 +834,7 @@ button.calc-btn:hover {
 .all-services {
   padding: 50px 30px;
   overflow: hidden;
-  background: #1b2654;
+  /* background: #1b2654; */
   border-radius: 4px;
   display: flex;
   flex-direction: row-reverse;
