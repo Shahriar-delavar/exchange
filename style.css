@@ -65,12 +65,14 @@ body {
 }
 
 iframe {
-  width: 70%;
-  height: 350px;
+  width: 50%;
+  height: auto;
+  min-height: 350px;
   border: none; /* Remove default border */
   margin: auto; /* Add some margin */
+  margin-left: auto;
+  margin-right: 25%;
 }
-
 
 .persian {
   font-family: "Vazirmatn";
