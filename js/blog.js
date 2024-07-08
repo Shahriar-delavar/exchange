@@ -26,13 +26,28 @@ $(document).ready(() => {
     }
 });
 
+function parseHTML(htmlString) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
+    return doc.body.innerHTML; // Access parsed HTML content
+}
 
+function parseEscapedHtml(text) {
+    // Create a temporary element to parse the HTML
+    const tempEl = document.createElement('div');
+
+    // Set the innerHTML of the temporary element with the escaped text
+    tempEl.innerHTML = text;
+
+    // Return the parsed HTML content (innerHTML of the temporary element)
+    return tempEl.textContent;
+}
 function generatePost(p) {
     let post = {
         published_at: new Date(p.published_at)
             .toLocaleDateString("fa-IR", blog_js_config.Jdate_settings),
         featured_image: `${blog_js_config.base_url}/sam/gallery/${p.featured_image}` || `img/blog/b${Math.floor(Math.random() * 6) + 1}.jpg`,
-        content : p.content,
+        content : parseEscapedHtml(p.content),
         title : p.title
     
     };
