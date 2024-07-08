@@ -96,10 +96,6 @@
 		})
 		.catch(e => console.error(e))
 
-
-
-
-
 	// calculate 
 
 	$("#calculate-btn").on("click", () => {
