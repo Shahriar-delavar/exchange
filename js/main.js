@@ -161,12 +161,29 @@
 
 	function loadBlogPosts() {
 		console.log("loading blog posts");
+		let row_counter = 0;
 		fetch(`${base_url}/api/sam/posts/`)
 			.then(r => r.json())
 			.then(posts => {
 				$("#blog_posts_container").html("");
 				console.log(posts[0]);
-				posts.forEach(post => $("#blog_posts_container").append(generateBlogPostDisplay(post)))
+				posts.forEach(post => {
+					$("#blog_posts_container").append(generateBlogPostDisplay(post))
+					row_counter++;
+					if (row_counter % 3 === 0) {
+						if (row_counter > 0) {
+							$("#blog_posts_container")
+								.append(`</div>`)
+						}
+						$("#blog_posts_container")
+							.append(`<div class="row">`); // Start a new row
+					}
+					// Close the last row if items don't perfectly fit into groups of 3
+					if (row_counter % 3 !== 0) {
+						$("#blog_posts_container")
+							.append(`</div>`);
+					}
+				})
 			})
 	}
 
@@ -182,7 +199,7 @@
 			post_lang: p.post_lang,
 			published_at: p.published_at,
 			content: parseEscapedHtml(p.content),
-			link : `blog-fa.html?post_id=${p.id}`
+			link: `blog-fa.html?post_id=${p.id}`
 		};
 
 
