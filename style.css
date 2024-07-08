@@ -64,6 +64,14 @@ body {
   direction: rtl;
 }
 
+iframe {
+  width: 70%;
+  height: 350px;
+  border: none; /* Remove default border */
+  margin: auto; /* Add some margin */
+}
+
+
 .persian {
   font-family: "Vazirmatn";
   direction: rtl;
