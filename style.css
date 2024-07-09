@@ -2275,6 +2275,7 @@ span.dolar {
   position: relative;
   overflow: hidden;
   display: block;
+  max-height: 250px;
 }
 .blog-page-area .blog-grid .image-scale > img {
   position: relative;
