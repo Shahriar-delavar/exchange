@@ -59,6 +59,7 @@ body {
   height: 100%;
 }
 
+/* sd modifs */
 .vazirFont {
   font-family: "Vazirmatn";
   direction: rtl;
@@ -79,6 +80,15 @@ iframe {
   direction: rtl;
   text-align: right;
 }
+.post-text p  {
+  color: #fff;
+}
+
+.post-text li  {
+  color: #fff;
+}
+
+/* end sd modifs  */
 
 .flexReverse {
   display: flex;

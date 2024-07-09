@@ -28,7 +28,6 @@ $(document).ready(() => {
     // fetch recent posts 
 
     function generateRecentPostDisplay(p) {
-
         return `   <div class="recent-single-post">
                                             <div class="post-img">
                                                 <a href="${blog_js_config.blog_link}${p.id}">
@@ -41,9 +40,7 @@ $(document).ready(() => {
                                                 <a href="${blog_js_config.blog_link}${p.id}">${p.title}</a>
                                                 </p>
                                                 <span class="date-type">
-                                                   ${new Date(p.published_at)
-                .toLocaleDateString("fa-IR", blog_js_config.Jdate_settings)},
-                                                                                                  </span>
+                                                   ${new Date(p.published_at).toLocaleDateString("fa-IR", blog_js_config.Jdate_settings)}</span>
                                             </div>
                                         </div>`;
     }
@@ -101,7 +98,7 @@ function generatePost(p) {
                                         </span>                                       
                                     </div>
                                     <h4>${post.title}</h4>
-                                    <div>${post.content}</div>
+                                    <div class="post-text">${post.content}</div>
                                 </div>
                             </div>
                         </article>`
