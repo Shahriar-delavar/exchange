@@ -191,13 +191,18 @@
 		let post = {
 			id: p.id,
 			title: p.title,
-			excerpt: p.excerpt,
+			
 			post_lang: p.post_lang,
 			published_at: p.published_at,
 			content: parseEscapedHtml(p.content),
 			link: `blog-fa.html?post_id=${p.id}`
 		};
 
+		if(p.excerpt && p.excerpt != 'null' ){
+			post.excerpt = p.excerpt;
+		} else {
+			post.excerpt = "";
+		}
 
 		if (p.hasOwnProperty('published_at') && p.hasOwnProperty('updated_at') && p.updated_at instanceof Date) {
 			const publishedTime = new Date(p.published_at).getTime();
@@ -236,7 +241,7 @@
                                     <a href="${post.link}">
                                         <h4 class="persian">${post.title || ""}</h4>
                                     </a>
-									<div ${post?.post_lang == "FA" ? 'class="persian"' : ""}>
+									<div ${post?.post_lang == "FA" ? 'class="persian"' : ""} style="color:#fff">
 									${post.excerpt}
 									</div>                                  
                                      

@@ -297,6 +297,7 @@ div#preloader {
   font-size: 16px;
   max-width: 510px;
   margin: 0px auto;
+  color: #fff;
 }
 .mar-row {
   margin-top: 50px;
@@ -892,6 +893,7 @@ button.calc-btn:hover {
 }
 .wel-content p {
   margin-bottom: 0px;
+  color: #fff;
 }
 .wel-content h4 {
   display: inline-block;
