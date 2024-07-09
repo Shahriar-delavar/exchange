@@ -1,7 +1,10 @@
 console.log("Blog JS");
 blog_js_config = {
     base_url: "https://portal.artaaustralia.com.au",
-    Jdate_settings: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    Jdate_settings: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
+    no_of_recent_posts: 3,
+    blog_link: 'blog-fa.html?post_id=',
+    img_src_base: 'https://portal.artaaustralia.com.au/sam/gallery/'
 };
 $(document).ready(() => {
     // Your jQuery code that interacts with the DOM goes here
@@ -21,6 +24,43 @@ $(document).ready(() => {
     } else {
 
     }
+
+    // fetch recent posts 
+
+    function generateRecentPostDisplay(p) {
+
+        return `   <div class="recent-single-post">
+                                            <div class="post-img">
+                                                <a href="${blog_js_config.blog_link}${p.id}">
+                                                    <img crossorigin="anonymous" 
+                                                    src="${blog_js_config.img_src_base}${p.featured_image}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="pst-content">
+                                                <p>
+                                                <a href="${blog_js_config.blog_link}${p.id}">${p.title}</a>
+                                                </p>
+                                                <span class="date-type">
+                                                   ${new Date(p.published_at)
+                .toLocaleDateString("fa-IR", blog_js_config.Jdate_settings)},
+                                                                                                  </span>
+                                            </div>
+                                        </div>`;
+    }
+
+
+    fetch(`${blog_js_config.base_url}/api/sam/posts/`)
+        .then(r => r.json())
+        .then(j => j.slice(0, blog_js_config.no_of_recent_posts))
+        .then(posts => {
+            console.log(posts[0]);
+            posts.forEach(post => {
+                $("#recent_posts_container").append(generateRecentPostDisplay(post))
+            })
+        })
+        .catch()
+
+
 });
 
 function parseHTML(htmlString) {
@@ -39,9 +79,9 @@ function generatePost(p) {
         published_at: new Date(p.published_at)
             .toLocaleDateString("fa-IR", blog_js_config.Jdate_settings),
         featured_image: `${blog_js_config.base_url}/sam/gallery/${p.featured_image}` || `img/blog/b${Math.floor(Math.random() * 6) + 1}.jpg`,
-        content : parseHTML(parseEscapedHtml(p.content)),
-        title : p.title
-    
+        content: parseHTML(parseEscapedHtml(p.content)),
+        title: p.title
+
     };
 
     return `<article class="blog-post-wrapper">
