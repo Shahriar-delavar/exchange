@@ -221,6 +221,7 @@
 									src="${post.featured_image}"
 									alt="">
                                 </a>
+								</div>
                                 <div class="blog-content">
                                     <div class="blog-meta">
                                         <span class="admin-type">
@@ -240,7 +241,7 @@
 									</div>                                  
                                      
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>`;
 	}
