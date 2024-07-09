@@ -80,11 +80,11 @@ iframe {
   direction: rtl;
   text-align: right;
 }
-.post-text p  {
+.post-text p {
   color: #fff;
 }
 
-.post-text li  {
+.post-text li {
   color: #fff;
 }
 
@@ -1434,6 +1434,7 @@ button.calc-btn:hover {
 }
 .footer-logo {
   margin-bottom: 2px;
+  margin-top: -50px;
   text-align: right;
 }
 .footer-head h4 {
