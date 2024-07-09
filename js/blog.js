@@ -1,10 +1,8 @@
 console.log("Blog JS");
-
 blog_js_config = {
     base_url: "https://portal.artaaustralia.com.au",
     Jdate_settings: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 };
-
 $(document).ready(() => {
     // Your jQuery code that interacts with the DOM goes here
     console.log("Document is ready!");
