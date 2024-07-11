@@ -49,6 +49,7 @@
   --sam-bg-transparent-blue: rgba(27, 38, 84, 0.5);
   --sam-bg-transparent-blue-opac-4: rgba(27, 38, 84, 0.4);
   --sam-bg-blue-opac-4: rgba(7, 11, 41, 0.4);
+  --sam-bg-blue-full: rgba(7, 11, 41, 1);
 }
 
 /*----------------------------------------*/
@@ -244,7 +245,7 @@ div#preloader {
   width: 100%;
   height: 100%;
   overflow: visible;
-  background: var(--sam-bg-transparent-blue-opac-4) url("3dgifmaker95334.gif")
+  background: var(--sam-bg-blue-full) url("3dgifmaker95334.gif")
     no-repeat center center;
 }
 .navbar-collapse {
